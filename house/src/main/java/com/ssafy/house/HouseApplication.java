@@ -9,7 +9,5 @@ public class HouseApplication {
 	public static void main(String[] args) {
 		System.out.println("working");
 		SpringApplication.run(HouseApplication.class, args);
-		
 	}
-
 }
