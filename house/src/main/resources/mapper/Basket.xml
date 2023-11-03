@@ -12,26 +12,26 @@
 		<result column="brand" property="brand"/>
 	</resultMap> -->
 
-	<select id="selectBasketAll" resultMap="car">
+<!-- 	<select id="selectBasketAll" resultMap="basket">
 
 	</select>
 	
-	<select id="selectBasketDetail" parameterType="int" resultMap="car">
+	<select id="selectBasketDetail" parameterType="int" resultMap="basket">
 
 	</select>
 	
-	<insert id="registBasket" parameterType="car">
+	<insert id="registBasket" parameterType="basket">
 
 	</insert>
 	
-	<update id="updateBasket" parameterType="car">
+	<update id="updateBasket" parameterType="basket">
 
 	</update>
 	
 	<delete id="deleteBasket" parameterType="int">
 
 
-	</delete>
+	</delete> -->
 
 
 </mapper>
