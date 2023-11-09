@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.house.house.model.mapper.HouseMappper">
+	<select id="selectHouseAll" resultType="House">
+		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, bubun, sigunguCode, eubmyundongCode, dongCode, landCode, apartmentName, jibun, lng, lat
+		from houseinfo;
+	</select>
+</mapper>
