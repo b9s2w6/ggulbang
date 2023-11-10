@@ -4,25 +4,30 @@
 	
 <mapper namespace="com.ssafy.house.house.model.mapper.HouseMapper">
 	<select id="selectHouseAll" resultType="house">
-		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, bubun, sigunguCode, eubmyundongCode, dongCode, landCode, apartmentName, jibun, lng, lat
-		from houseinfo;
+		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, 
+				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, 
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode, 
+				apartmentName, jibun, lng, lat
+			from houseinfo;
 	</select>
 	
-	
 	<select id="selectHouseDetail" resultType="house" parameterType="long">
-		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, bubun, sigunguCode, eubmyundongCode, dongCode, landCode, apartmentName, jibun, lng, lat
-		from houseinfo
-		where aptCode = #{aptCode};
+		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, 
+				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, 
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode, 
+				apartmentName, jibun, lng, lat
+			from houseinfo
+			where aptCode = #{aptCode};
 	</select>
 	
 	<insert id="registHouse" parameterType="house">
 		insert into houseinfo (aptCode, apartmentName)
-		values(#{aptCode}, #{apartmentName})
+			values(#{aptCode}, #{apartmentName})
 	</insert>
 	
 	<delete id="deleteHouse" parameterType="long">
 		delete from houseinfo
-		where aptCode = #{aptCode};
+			where aptCode = #{aptCode};
 	</delete>
 	
 </mapper>
