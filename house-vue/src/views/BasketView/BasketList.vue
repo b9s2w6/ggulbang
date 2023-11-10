@@ -79,7 +79,7 @@ const changePage = (pageNum) => {
         :key="basket.aptCode"
         @click="moveDetail(basket.userId, basket.aptCode)"
       >
-        <td>뭐요</td>
+        <td>{{ basket.userId }}</td>
         <td>{{ basket.aptCode }}</td>
       </tr>
     </table>

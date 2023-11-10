@@ -11,6 +11,7 @@ import BoardModify from "@/views/BoardView/BoardModify.vue";
 // BasketView
 import BasketView from "@/views/BasketView.vue";
 import BasketList from "@/views/BasketView/BasketList.vue";
+import BasketDetail from "@/views/BasketView/BasketDetail.vue";
 // console.log("HomView import 정보 : ", HomeView);
 
 const router = createRouter({
@@ -64,12 +65,12 @@ const router = createRouter({
           path: "list",
           component: BasketList,
         },
-        // // BasketDetail
-        // {
-        //   name: "basket-detail",
-        //   path: "detail/:userId/:aptCode",
-        //   component: BoardDetail,
-        // },
+        // BasketDetail
+        {
+          name: "basket-detail",
+          path: "detail/:userId/:aptCode",
+          component: BasketDetail,
+        },
         // //BoardWrite
         // {
         //   name: "article-write",

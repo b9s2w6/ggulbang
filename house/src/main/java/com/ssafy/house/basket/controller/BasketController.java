@@ -50,8 +50,8 @@ public class BasketController {
 //	}
 
 	// Delete는 요청 보낼 때 body로 못 보냄 params로 보낼 것 (ex. postman) 
-	@DeleteMapping
-	public int deleteBasket(String userId, long aptCode) {
+	@DeleteMapping("/{userId}/{aptCode}")
+	public int deleteBasket(@PathVariable("userId") String userId, @PathVariable("aptCode") long aptCode) {
 		System.out.println(userId + ", " + aptCode);
 		return basketService.deleteBasket(userId, aptCode);
 	}
