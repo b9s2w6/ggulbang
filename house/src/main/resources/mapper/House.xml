@@ -8,7 +8,9 @@
 				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, 
 				bubun, sigunguCode, eubmyundongCode, dongCode, landCode, 
 				apartmentName, jibun, lng, lat
-			from houseinfo;
+			from houseinfo
+			limit 100;
+			
 	</select>
 	
 	<select id="selectHouseDetail" resultType="house" parameterType="long">

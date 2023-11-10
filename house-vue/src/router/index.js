@@ -14,6 +14,11 @@ import BasketList from "@/views/BasketView/BasketList.vue";
 import BasketDetail from "@/views/BasketView/BasketDetail.vue";
 // console.log("HomView import 정보 : ", HomeView);
 
+// HouseView
+import HouseView from "@/views/HouseView.vue";
+import HouseList from "@/views/HouseView/HouseList.vue";
+import HouseDetail from "@/views/HouseView/HouseDetail.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -70,6 +75,38 @@ const router = createRouter({
           name: "basket-detail",
           path: "detail/:userId/:aptCode",
           component: BasketDetail,
+        },
+        // //BoardWrite
+        // {
+        //   name: "article-write",
+        //   path: "write",
+        //   component: BoardWrite,
+        // },
+        // //BoardModify
+        // {
+        //   name: "article-modify",
+        //   path: "modify/:articleNo",
+        //   component: BoardModify,
+        // },
+      ],
+    },
+
+    // HouseView
+    {
+      path: "/house",
+      component: HouseView,
+      redirect: "/house/list",
+      children: [
+        // BasketList
+        {
+          path: "list",
+          component: HouseList,
+        },
+        // BasketDetail
+        {
+          name: "house-detail",
+          path: "detail/:aptCode",
+          component: HouseDetail,
         },
         // //BoardWrite
         // {
