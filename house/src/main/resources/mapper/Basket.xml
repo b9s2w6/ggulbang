@@ -3,19 +3,19 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ssafy.house.basket.model.mapper.BasketMapper">
- 	<resultMap type="basket" id="basket">
+ <!-- 	<resultMap type="basket" id="basket">
 		<result column="basketNo" property="basketNo"/>
 		<result column="userId" property="userId"/>
 		<result column="aptCode" property="aptCode"/>
-	</resultMap> 
+	</resultMap>  -->
 
- 	<select id="selectBasketAll" parameterType="string" resultMap="basket">
+ 	<select id="selectBasketAll" parameterType="string" resultType="basket">
 		SELECT basketNo, userId, aptCode
 			FROM happyhouse.basket
 		    WHERE userId = #{userId};
 	</select>
 	
-	<select id="selectBasketDetail" parameterType="map" resultMap="basket">
+	<select id="selectBasketDetail" parameterType="map" resultType="basket">
 		SELECT basketNo, userId, aptCode
 			FROM happyhouse.basket
 		    WHERE userId = #{userId}
@@ -31,7 +31,7 @@
 
 	</update> -->
 	
-	<delete id="deleteBasket" parameterType="int">
+	<delete id="deleteBasket" parameterType="map">
 		DELETE FROM basket
 		    WHERE userId = #{userId}
 				AND aptCode = #{aptCode}
