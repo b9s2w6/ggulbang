@@ -19,13 +19,13 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public House selectHouseDetail(long aptNo) {
-		return null;
+	public House selectHouseDetail(long aptCode) {
+		return houseMapper.selectHouseDetail(aptCode);
 	}
 
 	@Override
 	public int registHouse(House House) {
-		return 0;
+		return houseMapper.registHouse(House);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int deleteHouse(long aptNo) {
-		return 0;
+	public int deleteHouse(long aptCode) {
+		return houseMapper.deleteHouse(aptCode);
 	}
 
 }

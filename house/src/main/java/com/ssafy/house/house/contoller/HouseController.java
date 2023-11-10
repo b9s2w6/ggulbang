@@ -26,21 +26,19 @@ public class HouseController {
 	final HouseService houseService;
 	
 	@GetMapping
-	@ResponseBody
 	public List<House> selectHouseAll() {
 		return houseService.selectHouseAll();
 	}
 
-	@GetMapping("{/userId}")
-	public House selectHouseDetail(@PathVariable("userId") String userId) {
-		System.out.println("selectHouseDetail");
-		return null;
+	@GetMapping("/{aptCode}")
+	public House selectHouseDetail(@PathVariable("aptCode") long aptCode) {
+		System.out.println("전달받은 파라미터 aptCode: "+aptCode);
+		return houseService.selectHouseDetail(aptCode);
 	}
 
 	@PostMapping
 	public int registHouse(House house) {
-		System.out.println("registHouse");
-		return 0;
+		return houseService.registHouse(house);
 	}
 
 	@PutMapping
@@ -49,10 +47,9 @@ public class HouseController {
 		return 0;
 	}
 
-	@DeleteMapping
-	public int deleteHouse(String userId, long aptNo) {
-		System.out.println(userId + ", " + aptNo);
-		return 0;
+	@DeleteMapping("/{aptCode}")
+	public int deleteHouse(@PathVariable("aptCode") long aptCode) {
+		return houseService.deleteHouse(aptCode);
 	}
 	 
 }
