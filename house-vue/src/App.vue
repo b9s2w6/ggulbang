@@ -12,6 +12,9 @@ import { RouterView, RouterLink } from "vue-router";
         <RouterLink to="/board">게시판</RouterLink>
       </li>
       <li>
+        <RouterLink to="/house">매물 리스트</RouterLink>
+      </li>
+      <li>
         <RouterLink to="/basket">장바구니</RouterLink>
       </li>
     </ul>

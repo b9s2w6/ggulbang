@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const useBasketStore = defineStore("basket", () => {
   // 장바구니 목록
-  const baskets = ref({}); //목록 데이터
+  const basketList = ref({}); //목록 데이터
   const totalPageCount = ref(0); //전체 페이지 개수
 
   const getMyBasket = async (userId, params) => {
@@ -13,9 +13,9 @@ export const useBasketStore = defineStore("basket", () => {
     });
 
     console.log("getMyBasket(params) 응답데이터:", data);
-    console.log(data.baskets);
-    baskets.value = data;
-    console.log("바스켓 : ", baskets);
+    console.log(data.basketList);
+    basketList.value = data;
+    console.log("바스켓 : ", basketList);
     totalPageCount.value = data.totalPageCount;
   };
 
@@ -46,7 +46,7 @@ export const useBasketStore = defineStore("basket", () => {
   };
 
   return {
-    baskets,
+    basketList,
     totalPageCount,
     getMyBasket,
     basketInfo,

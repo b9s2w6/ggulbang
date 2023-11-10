@@ -13,7 +13,7 @@ import { useBasketStore } from "../../stores/basket";
 const basketStore = useBasketStore();
 
 // 2. 반응형 데이터 연결하기
-const baskets = computed(() => basketStore.baskets);
+const basketList = computed(() => basketStore.basketList);
 const totalPageCount = computed(() => basketStore.totalPageCount);
 
 const router = useRouter();
@@ -75,7 +75,7 @@ const changePage = (pageNum) => {
       </tr>
       <tr
         class="basket-item"
-        v-for="basket in baskets"
+        v-for="basket in basketList"
         :key="basket.aptCode"
         @click="moveDetail(basket.userId, basket.aptCode)"
       >
