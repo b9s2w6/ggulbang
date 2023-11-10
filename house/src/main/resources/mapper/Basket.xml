@@ -2,36 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.ssafy.house.model.mapper.BasketMapper">
+<mapper namespace="com.ssafy.house.basket.model.mapper.BasketMapper">
+ 	<resultMap type="basket" id="basket">
+		<result column="basketNo" property="basketNo"/>
+		<result column="userId" property="userId"/>
+		<result column="aptCode" property="aptCode"/>
+	</resultMap> 
 
-<!-- 	<resultMap type="car" id="car">
-		<result column="car_no" property="carNo"/>
-		<result column="number" property="number"/>
-		<result column="model" property="model"/>
-		<result column="price" property="price"/>
-		<result column="brand" property="brand"/>
-	</resultMap> -->
-
-<!-- 	<select id="selectBasketAll" resultMap="basket">
-
+ 	<select id="selectBasketAll" parameterType="string" resultMap="basket">
+		SELECT basketNo, userId, aptCode
+			FROM happyhouse.basket
+		    WHERE userId = #{userId};
 	</select>
 	
-	<select id="selectBasketDetail" parameterType="int" resultMap="basket">
-
+	<select id="selectBasketDetail" parameterType="map" resultMap="basket">
+		SELECT basketNo, userId, aptCode
+			FROM happyhouse.basket
+		    WHERE userId = #{userId}
+				AND aptCode = #{aptCode}
 	</select>
 	
 	<insert id="registBasket" parameterType="basket">
-
+		INSERT INTO basket(userId, aptCode) 
+			VALUES (#{userId}, #{aptCode});
 	</insert>
 	
-	<update id="updateBasket" parameterType="basket">
+<!-- 	<update id="updateBasket" parameterType="basket">
 
-	</update>
+	</update> -->
 	
 	<delete id="deleteBasket" parameterType="int">
-
-
-	</delete> -->
-
-
+		DELETE FROM basket
+		    WHERE userId = #{userId}
+				AND aptCode = #{aptCode}
+	</delete> 
 </mapper>
