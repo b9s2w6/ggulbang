@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,9 +36,10 @@ public class BasketController {
 		return basketService.selectBasketDetail(userId, aptCode);
 	}
 
+	// Post 요청 보낼 때,  
 	@PostMapping
-	public int registBasket(Basket basket) {
-		System.out.println("registBasket");
+	public int registBasket(@RequestBody Basket basket) {
+		System.out.println("registBasket : " + basket);
 		return basketService.registBasket(basket);
 	}
 
@@ -47,10 +49,11 @@ public class BasketController {
 //		return ;
 //	}
 
+	// Delete는 요청 보낼 때 body로 못 보냄 params로 보낼 것 (ex. postman) 
 	@DeleteMapping
-	public int deleteBasket(String userId, long aptNo) {
-		System.out.println(userId + ", " + aptNo);
-		return 0;
+	public int deleteBasket(String userId, long aptCode) {
+		System.out.println(userId + ", " + aptCode);
+		return basketService.deleteBasket(userId, aptCode);
 	}
 	 
 }
