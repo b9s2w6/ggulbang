@@ -3,6 +3,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	
-<mapper>
-	
+<mapper namespace="com.ssafy.house.member.model.mapper.MemberMapper>
+ 	<select id="selectBasketAll" parameterType="string" resultType="basket">
+		SELECT basketNo, userId, aptCode
+			FROM happyhouse.basket
+		    WHERE userId = #{userId};
+	</select>
 </mapper>

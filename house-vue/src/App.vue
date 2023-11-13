@@ -20,6 +20,9 @@ import { RouterView, RouterLink } from "vue-router";
       <li>
         <RouterLink to="/login">로그인</RouterLink>
       </li>
+      <li>
+        <RouterLink to="/chat">채팅</RouterLink>
+      </li>
     </ul>
   </header>
   <main>

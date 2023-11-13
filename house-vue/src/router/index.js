@@ -22,6 +22,9 @@ import HouseDetail from "@/views/HouseView/HouseDetail.vue";
 // Login
 import LoginForm from "@/views/LoginForm.vue";
 
+// Chat
+import ChatForm from "@/views/ChatForm.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -125,11 +128,17 @@ const router = createRouter({
         // },
       ],
     },
-    //로그인 페이지
+    // Login
     {
       path: "/login",
       name: "login",
       component: LoginForm,
+    },
+    // Login
+    {
+      path: "/chat",
+      name: "chat",
+      component: ChatForm,
     },
   ],
 });
