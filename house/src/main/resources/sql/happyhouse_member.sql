@@ -55,3 +55,7 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-10-26 11:38:38
+
+-- 결재금액 보여주기
+ALTER TABLE `member`
+ADD COLUMN rechargeAmount bigint;
