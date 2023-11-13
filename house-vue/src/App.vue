@@ -17,6 +17,9 @@ import { RouterView, RouterLink } from "vue-router";
       <li>
         <RouterLink to="/basket">장바구니</RouterLink>
       </li>
+      <li>
+        <RouterLink to="/login">로그인</RouterLink>
+      </li>
     </ul>
   </header>
   <main>
