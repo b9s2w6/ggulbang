@@ -1,5 +1,7 @@
 package com.ssafy.house.member.model.service;
 
+import com.ssafy.house.member.repository.Member;
+
 public interface MemberService {
-	void login(String userid, String userpass);
+	Member login(Member member);
 }
