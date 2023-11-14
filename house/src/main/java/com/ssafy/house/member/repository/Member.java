@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class Member {
-	String userid;
-	String username;
-	String userpass;
+	String userId;
+	String userName;
+	String userPass;
 	String joinDate;
 	String address;
 	String tel;
-	long rechatgeAmout;
+	long balance;
 	
 }

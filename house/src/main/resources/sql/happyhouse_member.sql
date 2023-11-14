@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
-  `userId` varchar(20) NOT NULL,
-  `userName` varchar(20) NOT NULL,
-  `userPass` varchar(20) NOT NULL,
-  `joinDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` varchar(20) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `user_pass` varchar(256) NOT NULL,
+  `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar(100) DEFAULT NULL,
   `tel` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`userid`)
+  `balance` bigInt DEFAULT 0,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +42,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('aaa','1234','계란찜','2023-09-22 06:33:46',NULL,NULL),('qqqq','짱구','1234','2023-09-22 07:22:31','대덕대로150번길','010-9999-9999'),('user1','최서현','1111','2023-09-15 08:03:05',NULL,NULL);
+INSERT INTO `member` VALUES ('aaa','1234','계란찜','2023-09-22 06:33:46',NULL,NULL,0),('qqqq','짱구','1234','2023-09-22 07:22:31','대덕대로150번길','010-9999-9999',0),('user1','최서현','1111','2023-09-15 08:03:05',NULL,NULL,0);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

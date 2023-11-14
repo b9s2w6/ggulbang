@@ -4,9 +4,17 @@
 	
 	
 <mapper namespace="com.ssafy.house.member.model.mapper.MemberMapper">
- 	<select id="selectBasketAll" parameterType="string" resultType="basket">
-		SELECT basketNo, userId, aptCode
-			FROM happyhouse.basket
-		    WHERE userId = #{userId};
+
+	<resultMap type="Member" id="memberDto">
+		<result column="user_id" property="userId"/>
+		<result column="user_pass" property="userPass"/>
+		<result column="user_name" property="userName"/>
+		<result column="join_date" property="joinDate"/>
+	</resultMap>
+	
+	<select id="login" parameterType="Member" resultMap="memberDto">
+		SELECT user_id, user_name, join_date, address, tel, balance
+		FROM member
+		WHERE user_id = #{userId} and user_pass = #{userPass};
 	</select>
 </mapper>
