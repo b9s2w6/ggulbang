@@ -10,7 +10,7 @@ const chatMessage = ref("");
 const chatHistory = ref([]);
 
 const connectWs = () => {
-  ws.value = new WebSocket("ws://" + location.host + "/chat");
+  ws.value = new WebSocket("ws://" + location.host);
 
   ws.value.onmessage = (event) => {
     const message = event.data;
