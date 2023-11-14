@@ -51,3 +51,7 @@ basket : 장바구니 관련
 3. REST 설계
    - /house/
    - 어떤걸 Json으로 보낼건지 등등을 정하기
+
+[레퍼런스]
+
+- 카카오맵 : https://soa-memo.tistory.com/41
