@@ -13,8 +13,13 @@
 	</resultMap>
 	
 	<select id="login" parameterType="Member" resultMap="memberDto">
-		SELECT user_id, user_name, join_date, address, tel, balance
+		SELECT user_id, user_pass, user_name
 		FROM member
-		WHERE user_id = #{userId} and user_pass = #{userPass};
+		WHERE user_id = #{userId} ;
 	</select>
+	
+	<insert id="registMember" parameterType="Member">
+		insert into member(user_id, user_pass, user_name, address, tel)
+		values(#{userId}, #{userPass}, #{userName}, #{address}, #{tel});
+	</insert>
 </mapper>

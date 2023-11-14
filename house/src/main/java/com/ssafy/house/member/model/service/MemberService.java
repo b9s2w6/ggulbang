@@ -1,7 +1,11 @@
 package com.ssafy.house.member.model.service;
 
+import java.util.Map;
+
 import com.ssafy.house.member.repository.Member;
 
 public interface MemberService {
-	Member login(Member member);
+	Map<String, String> login(Member member);
+
+	void registMember(Member member);
 }

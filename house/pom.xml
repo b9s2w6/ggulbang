@@ -88,11 +88,10 @@
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>0.11.2</version>
+			<artifactId>jjwt</artifactId>
+			 <version>0.9.1</version>
 		</dependency>
 
 

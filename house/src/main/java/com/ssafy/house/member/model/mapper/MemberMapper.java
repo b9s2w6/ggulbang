@@ -9,4 +9,6 @@ public interface MemberMapper {
 
 	public Member login(Member member);
 
+	public void registMember(Member member);
+
 }
