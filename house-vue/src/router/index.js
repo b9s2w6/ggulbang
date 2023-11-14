@@ -24,7 +24,6 @@ import LoginForm from "@/views/LoginForm.vue";
 
 // Chat
 import ChatForm from "@/views/ChatForm.vue";
-import ChatForm2 from "@/views/ChatForm2.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -141,12 +140,12 @@ const router = createRouter({
       name: "chat",
       component: ChatForm,
     },
-    // Chat 2
-    {
-      path: "/chat2",
-      name: "chat2",
-      component: ChatForm2,
-    },
+    // // Chat 2
+    // {
+    //   path: "/chat2",
+    //   name: "chat2",
+    //   component: ChatForm2,
+    // },
   ],
 });
 

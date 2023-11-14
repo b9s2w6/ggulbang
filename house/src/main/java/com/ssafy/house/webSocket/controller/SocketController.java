@@ -1,10 +1,10 @@
 package com.ssafy.house.webSocket.controller;
 
-
-import com.ssafy.house.webSocket.repository.Chat;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+
+import com.ssafy.house.webSocket.repository.Chat;
 
 @Controller
 public class SocketController {
