@@ -29,5 +29,3 @@ import { RouterView, RouterLink } from "vue-router";
     <RouterView></RouterView>
   </main>
 </template>
-
-<style scoped></style>

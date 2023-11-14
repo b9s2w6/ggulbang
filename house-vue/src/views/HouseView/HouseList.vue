@@ -3,17 +3,14 @@ import PageNavigation from "../../components/navigation/PageNavigation.vue";
 import SearchBar from "../../components/SearchBar.vue";
 import { RouterLink, useRouter } from "vue-router";
 import { ref, computed } from "vue";
-
-// 1. store 객체 얻어오기
+import KakaoMap from "../../components/common/KakaoMap.vue";
+// import VKakaoMap from "@/components/common/VKakaoMap.vue";
 import { useHouseStore } from "../../stores/house";
-const hosueStore = useHouseStore();
 
-// 2. 반응형 데이터 연결하기
-const houseList = computed(() => hosueStore.houseList);
-const totalPageCount = computed(() => hosueStore.totalPageCount);
-
+const houseStore = useHouseStore();
+const houseList = computed(() => houseStore.houseList);
+const totalPageCount = computed(() => houseStore.totalPageCount);
 const router = useRouter();
-
 const params = ref({
   key: "", //조건 검색 시 컬럼명
   word: "", //해당 컬럼에 일치하는 데이터
@@ -21,8 +18,7 @@ const params = ref({
   spp: 30, //한번에 얻어올 게시글 개수
 });
 
-// 목록 조회
-hosueStore.getHouseList();
+houseStore.getHouseList();
 
 const moveDetail = (aptCode) => {
   router.push({ name: "house-detail", params: { aptCode } });
@@ -31,8 +27,7 @@ const moveDetail = (aptCode) => {
 const changePage = (pageNum) => {
   params.value.pgno = pageNum;
 
-  // 목록 조회 필요
-  hosueStore.getHouseList();
+  houseStore.getHouseList();
 };
 
 // 검색 파트, 추후에 기능 추가
@@ -44,12 +39,22 @@ const changePage = (pageNum) => {
 //   params.value.pgno = 1;
 
 //   // 목록 조회 필요
-//   hosueStore.getMyBasket(params.value);
+//   houseStore.getMyBasket(params.value);
 // };
+</script>
+<script>
+export default {
+  name: "App",
+  components: {
+    KakaoMap,
+  },
+};
 </script>
 
 <template>
   <div>
+    <KakaoMap />
+    <!-- <VKakaoMap :houses="houseList" /> -->
     <h1>매물 목록</h1>
 
     <!-- <SearchBar
