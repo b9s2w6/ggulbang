@@ -16,7 +16,7 @@ export const useAuthStore = defineStore(
 
     const login = async (loginForm) => {
       const { data } = await axios.post(`/api/member`, loginForm);
-      // console.log("로그인 요청 후 응답 데이터:", data);
+      console.log("로그인 요청 후 응답 데이터:", data);
 
       token.value = data.token; //토큰 정보 저장
 
