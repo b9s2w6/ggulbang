@@ -13,6 +13,7 @@
 	var ws;
 	function connectWs() {
 		ws = new WebSocket('ws://' + location.host + '/chat');
+		console.log(ws);
 		ws.onmessage = function(data) {
 			console.log(data.data);
 			$("<p>"+data.data+"</p>").prependTo('#chat');
@@ -24,6 +25,7 @@
 
 
 	function send() {
+		console.log(ws);
 		ws.send($("#chatting").val());
 		$('#chatting').val("");
 	}

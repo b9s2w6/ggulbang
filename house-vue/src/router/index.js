@@ -24,7 +24,9 @@ import LoginForm from "@/views/LoginForm.vue";
 
 // Chat
 import ChatForm from "@/views/ChatForm.vue";
-// import ChatForm2 from "@/views/ChatForm2.vue";
+import ChatForm2 from "@/views/ChatForm2.vue";
+import ChatForm3 from "@/views/ChatForm3.vue";
+import ChatForm4 from "@/views/ChatForm4.vue";
 
 //loginCheck
 import { useAuthStore } from "../stores/auth";
@@ -147,14 +149,26 @@ const router = createRouter({
       name: "chat",
       path: "/chat",
       component: ChatForm,
-      meta: { requiresAuth: true },
+      //meta: { requiresAuth: true },
     },
-    // // Chat 2
-    // {
-    //   path: "/chat2",
-    //   name: "chat2",
-    //   component: ChatForm2,
-    // },
+    // Chat 2
+    {
+      name: "chat2",
+      path: "/chat2",
+      component: ChatForm2,
+    },
+    // Chat 3
+    {
+      name: "chat3",
+      path: "/chat3",
+      component: ChatForm3,
+    },
+    // Chat 4
+    {
+      name: "chat4",
+      path: "/chat4",
+      component: ChatForm4,
+    },
   ],
 });
 

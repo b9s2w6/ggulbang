@@ -24,4 +24,10 @@ export default defineConfig({
       },
     },
   },
+  // 이걸 안 해주면 멍청한 socketJS가 자꾸 global 정의 안됐다고 징징댐
+  define: {
+    // By default, Vite doesn't include shims for NodeJS/
+    // necessary for segment analytics lib to work
+    global: {},
+  },
 });
