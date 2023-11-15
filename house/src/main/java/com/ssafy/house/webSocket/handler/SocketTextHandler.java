@@ -12,7 +12,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class SocketTextHandler extends TextWebSocketHandler {
 
-//	ArrayList<WebSocketSession> sessions = new ArrayList<>();
 	HashMap<String, WebSocketSession> sessions = new HashMap<>();
 
 	// client에서 메시지가 서버로 전송댈때 실행되는 함수.
@@ -20,13 +19,14 @@ public class SocketTextHandler extends TextWebSocketHandler {
 	public void handleTextMessage(WebSocketSession session, TextMessage message) {
 		String payload = message.getPayload();
 
+		System.out.println("메세지 : " + message);
+		
 		try {
-
-				// 접속된 모든 세션에 메시지 전송
-				for (String key : sessions.keySet()) {
-					WebSocketSession ss = sessions.get(key);
-					ss.sendMessage(new TextMessage(payload));
-				}
+			// 접속된 모든 세션에 메시지 전송
+			for (String key : sessions.keySet()) {
+				WebSocketSession ss = sessions.get(key);
+				ss.sendMessage(new TextMessage(payload));
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,6 +36,7 @@ public class SocketTextHandler extends TextWebSocketHandler {
 	// 세션이 생성될때 시작되는 함수
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		System.out.println("[세션 시작이요!] " + session);
 		super.afterConnectionEstablished(session);
 		sessions.put(session.getId(), session);
 	}
@@ -43,7 +44,7 @@ public class SocketTextHandler extends TextWebSocketHandler {
 	// 세션이 끝날때 실행되는 함수
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-
+		System.out.println("[세션 종료요!] " + session);
 		sessions.remove(session.getId());
 		super.afterConnectionClosed(session, status);
 
