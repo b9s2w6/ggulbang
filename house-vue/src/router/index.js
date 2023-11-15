@@ -26,6 +26,9 @@ import LoginForm from "@/views/LoginForm.vue";
 import ChatForm from "@/views/ChatForm.vue";
 // import ChatForm2 from "@/views/ChatForm2.vue";
 
+//loginCheck
+import { useAuthStore } from "../stores/auth";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -50,18 +53,21 @@ const router = createRouter({
           name: "article-detail",
           path: "detail/:articleNo",
           component: BoardDetail,
+          meta: { requiresAuth: true },
         },
         //BoardWrite
         {
           name: "article-write",
           path: "write",
           component: BoardWrite,
+          meta: { requiresAuth: true },
         },
         //BoardModify
         {
           name: "article-modify",
           path: "modify/:articleNo",
           component: BoardModify,
+          meta: { requiresAuth: true },
         },
       ],
     },
@@ -71,6 +77,7 @@ const router = createRouter({
       path: "/basket",
       component: BasketView,
       redirect: "/basket/list",
+      meta: { requiresAuth: true },
       children: [
         // BasketList
         {
@@ -140,6 +147,7 @@ const router = createRouter({
       name: "chat",
       path: "/chat",
       component: ChatForm,
+      meta: { requiresAuth: true },
     },
     // // Chat 2
     // {
@@ -148,6 +156,26 @@ const router = createRouter({
     //   component: ChatForm2,
     // },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  //로그인 필요
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!authStore.token) {
+      alert("로그인 권한 필요");
+      next({ path: "/login" }); // 인증되지 않은 경우, 로그인 페이지로 리다이렉트
+    } else {
+      //관리자 권한 필요
+      if (to.matched.some((record) => record.meta.requiresAdmin)) {
+        // 관리자가 아닌 경우 홈으로
+        if (authStore.user.role !== "admin") {
+          alert("관리자 권한 필요");
+          next({ path: "/" });
+        } else next(); // 관리자인 경우, 해당 경로로 이동
+      } else next(); // 인증된 경우 해당 경로로 이동
+    }
+  } else next(); // 인증이 필요하지 않은 경우 해당 경로로 이동
 });
 
 export default router;

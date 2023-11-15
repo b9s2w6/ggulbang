@@ -8,7 +8,7 @@ const router = useRouter();
 
 const loginForm = ref({
   userId: "",
-  userPassword: "",
+  userPass: "",
 });
 
 const login = async () => {
@@ -29,7 +29,10 @@ const login = async () => {
       <fieldset>
         <label><input type="text" v-model="loginForm.userId" /> 아이디</label>
         <br />
-        <label><input type="password" v-model="loginForm.userPassword" /> 비밀번호</label>
+        <label
+          ><input type="password" v-model="loginForm.userPass" />
+          비밀번호</label
+        >
         <br />
         <button>로그인</button>
       </fieldset>
