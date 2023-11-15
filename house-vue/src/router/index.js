@@ -131,14 +131,14 @@ const router = createRouter({
     },
     // Login
     {
-      path: "/login",
       name: "login",
+      path: "/login",
       component: LoginForm,
     },
     // Chat
     {
-      path: "/chat",
       name: "chat",
+      path: "/chat",
       component: ChatForm,
     },
     // // Chat 2
