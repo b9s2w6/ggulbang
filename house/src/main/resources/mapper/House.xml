@@ -1,35 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-<mapper namespace="com.ssafy.house.house.model.mapper.HouseMapper">
+
+<mapper
+	namespace="com.ssafy.house.house.model.mapper.HouseMapper">
 	<select id="selectHouseAll" resultType="house">
-		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, 
-				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, 
-				bubun, sigunguCode, eubmyundongCode, dongCode, landCode, 
-				apartmentName, jibun, lng, lat
-			from houseinfo
-			limit 100;
-			
+		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
+		roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
+		bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+		apartmentName, jibun, lng, lat
+		from houseinfo
+		<include refid="search"></include>
+		order by aptCode desc
+		limit #{start}, #{listsize}
+
 	</select>
-	
-	<select id="selectHouseDetail" resultType="house" parameterType="long">
-		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun, 
-				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun, 
-				bubun, sigunguCode, eubmyundongCode, dongCode, landCode, 
-				apartmentName, jibun, lng, lat
-			from houseinfo
-			where aptCode = #{aptCode};
+
+	<select id="selectHouseDetail" resultType="house"
+		parameterType="long">
+		select aptCode, buildYear, roadName, roadNameBonbun,
+		roadNameBubun,
+		roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
+		bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+		apartmentName, jibun, lng, lat
+		from houseinfo
+		where aptCode = #{aptCode};
 	</select>
-	
+
 	<insert id="registHouse" parameterType="house">
-		insert into houseinfo (aptCode, apartmentName)
-			values(#{aptCode}, #{apartmentName})
+		insert into houseinfo
+		(aptCode, apartmentName)
+		values(#{aptCode}, #{apartmentName})
 	</insert>
-	
+
 	<delete id="deleteHouse" parameterType="long">
 		delete from houseinfo
-			where aptCode = #{aptCode};
+		where aptCode = #{aptCode};
 	</delete>
-	
+
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == 'aptCode'">
+				and aptCode = #{word}
+			</if>
+			<if test="key == 'apartmentName'">
+				and ${key} like concat('%', #{word}, '%')
+			</if>
+
+			<if test="key == 'roadName'">
+				and ${key} like concat('%', #{word}, '%')
+			</if>
+		</if>
+	</sql>
+
+
+	<select id="getTotalHouseCount" parameterType="map"
+		resultType="int">
+		select count(aptCode)
+		from houseinfo
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+
 </mapper>
