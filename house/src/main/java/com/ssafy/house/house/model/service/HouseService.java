@@ -10,6 +10,6 @@ public interface HouseService {
 	HouseList selectHouseAll(Map<String, String> map);
 	House selectHouseDetail(long aptCode);
 	int registHouse(House House);
-	int updateHouse(House House);
+	int updateHouse(Map<String, Object> params);
 	int deleteHouse(long aptCode);
 }

@@ -29,8 +29,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int updateHouse(House House) {
-		return 0;
+	public int updateHouse(Map<String, Object> params) {
+		return houseMapper.updateHouse(params);
 	}
 
 	@Override
