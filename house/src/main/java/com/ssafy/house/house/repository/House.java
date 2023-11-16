@@ -23,4 +23,5 @@ public class House {
 	String jibun;
 	String lng;
 	String lat;
+	String ownerId;
 }

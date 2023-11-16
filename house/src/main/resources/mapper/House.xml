@@ -16,15 +16,15 @@
 
 	</select>
 
-	<select id="selectHouseDetail" resultType="house"
-		parameterType="long">
-		select aptCode, buildYear, roadName, roadNameBonbun,
-		roadNameBubun,
-		roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
-		bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
-		apartmentName, jibun, lng, lat
-		from houseinfo
-		where aptCode = #{aptCode};
+	<select id="selectHouseDetail" resultType="house" parameterType="long">
+		select house.aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
+				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+				apartmentName, jibun, lng, lat, p.userId as ownerId
+			from houseinfo as house
+			left outer join product as p
+				on house.aptCode = p.aptCode
+			where house.aptCode = #{aptCode}
 	</select>
 
 	<insert id="registHouse" parameterType="house">
@@ -32,6 +32,13 @@
 		(aptCode, apartmentName)
 		values(#{aptCode}, #{apartmentName})
 	</insert>
+
+ 	<update id="updateHouse" parameterType="map">
+		update product
+			set userId = #{userId}
+		    where aptCode = #{aptCode}
+				and userId = #{ownerId}
+	</update>
 
 	<delete id="deleteHouse" parameterType="long">
 		delete from houseinfo

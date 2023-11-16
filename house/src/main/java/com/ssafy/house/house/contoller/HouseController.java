@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,6 +50,7 @@ public class HouseController {
 	@GetMapping("/{aptCode}")
 	public House selectHouseDetail(@PathVariable("aptCode") long aptCode) {
 		System.out.println("전달받은 파라미터 aptCode: "+aptCode);
+		System.out.println(houseService.selectHouseDetail(aptCode));
 		return houseService.selectHouseDetail(aptCode);
 	}
 
@@ -57,10 +59,11 @@ public class HouseController {
 		return houseService.registHouse(house);
 	}
 
+	// 집 소유주 변경 (product 테이블)
 	@PutMapping
-	public int updateHouse(House house) {
-		System.out.println("updateHouse");
-		return 0;
+	public int updateHouse(@RequestBody Map<String, Object> params) {
+		System.out.println("updateHouse : " + params);
+		return houseService.updateHouse(params);
 	}
 
 	@DeleteMapping("/{aptCode}")

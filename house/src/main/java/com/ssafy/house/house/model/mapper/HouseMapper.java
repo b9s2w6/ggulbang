@@ -12,7 +12,7 @@ public interface HouseMapper {
 	List<House> selectHouseAll(Map<String, Object> param);
 	House selectHouseDetail(long aptCode);
 	int registHouse(House House);
-	int updateHouse(House House);
+	int updateHouse(Map<String, Object> params);
 	int deleteHouse(long aptCode);
 	int getTotalHouseCount(Map<String, Object> param);
 }
