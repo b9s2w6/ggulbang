@@ -26,7 +26,7 @@ public class BasketController {
 	
 	@GetMapping("/{userId}")
 	public List<Basket> selectBasketAll(@PathVariable("userId") String userId) {
-		System.out.println("selectBasketAll");
+		System.out.println("selectBasketAll : " + userId);
 		return basketService.selectBasketAll(userId);
 	}
 
