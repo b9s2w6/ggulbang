@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.house.basket.model.service.BasketService;
 import com.ssafy.house.house.model.service.HouseService;
 import com.ssafy.house.house.repository.House;
 import com.ssafy.house.house.repository.HouseList;
@@ -33,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 public class HouseController {
 	
 	final HouseService houseService;
+	final BasketService basketService;
 	
 	@GetMapping
 	public ResponseEntity<?> selectHouseAll(@RequestParam Map<String, String> map) {
@@ -63,7 +65,19 @@ public class HouseController {
 	@PutMapping
 	public int updateHouse(@RequestBody Map<String, Object> params) {
 		System.out.println("updateHouse : " + params);
-		return houseService.updateHouse(params);
+		
+		int result = houseService.updateHouse(params);
+		
+		// 제대로 소유주 변경시, 장바구니에서 삭제처리
+		if (result != 0) {
+			String userId = (String) params.get("userId");
+			long aptCode = (long) params.get("aptCode");
+			
+			System.out.println("소유주 변경할거니까 장바구니에서 지움! : " + userId + ", " + aptCode );
+			return basketService.deleteBasket(userId, aptCode);
+		}
+		
+		return result;
 	}
 
 	@DeleteMapping("/{aptCode}")

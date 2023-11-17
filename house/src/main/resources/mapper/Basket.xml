@@ -10,9 +10,11 @@
 	</resultMap>  -->
 
  	<select id="selectBasketAll" parameterType="string" resultType="basket">
-		SELECT basketNo, userId, aptCode
-			FROM happyhouse.basket
-		    WHERE userId = #{userId};
+		SELECT basketNo, product.userId, basket.aptCode
+			FROM happyhouse.basket as basket
+		    left outer join product as product
+				on basket.aptCode = product.aptCode
+			WHERE basket.userId = #{userId};
 	</select>
 	
 	<select id="selectBasketDetail" parameterType="map" resultType="basket">
