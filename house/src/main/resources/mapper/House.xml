@@ -20,7 +20,7 @@
 		select house.aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
 				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
 				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
-				apartmentName, jibun, lng, lat, p.userId as ownerId
+				apartmentName, jibun, lng, lat, p.userId as ownerId, p.price
 			from houseinfo as house
 			left outer join product as p
 				on house.aptCode = p.aptCode
