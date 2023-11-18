@@ -11,5 +11,6 @@ public class Member {
 	String address;
 	String tel;
 	long balance;
-	
+	long rechargeAmount;
+	long totalAssetPrice;
 }
