@@ -23,12 +23,12 @@ public class memberController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody Member member){
-		System.out.println(member);
+		System.out.println("[memberController][login] " + member);
 		//		Member memberInfo = d
 		Map<String, String> loginInfo= memberService.login(member);
-
+		
 		if(loginInfo==null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); 
-
+		System.out.println(loginInfo);
 		return ResponseEntity.ok(loginInfo);
 	}
 
