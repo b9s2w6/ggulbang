@@ -6,15 +6,26 @@
 	namespace="com.ssafy.house.house.model.mapper.HouseMapper">
 	<select id="selectHouseAll" resultType="house">
 		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
-		roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
-		bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
-		apartmentName, jibun, lng, lat
-		from houseinfo
-		<include refid="search"></include>
-		order by aptCode desc
-		limit #{start}, #{listsize}
-
+				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+				apartmentName, jibun, lng, lat
+			from houseinfo
+			<include refid="search"></include>
+			order by aptCode desc
+			limit #{start}, #{listsize}
 	</select>
+	
+	<select id="selectMyHouseAll" parameterType="string" resultType="house">
+		select house.aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
+				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+				apartmentName, jibun, lng, lat
+			from product as product
+			left outer join houseinfo as house
+				on product.aptCode = house.aptCode
+			where userId = #{userId};
+	</select>
+
 
 	<select id="selectHouseDetail" resultType="house" parameterType="long">
 		select house.aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
@@ -64,7 +75,7 @@
 	<select id="getTotalHouseCount" parameterType="map"
 		resultType="int">
 		select count(aptCode)
-		from houseinfo
+			from houseinfo
 		<where>
 			<include refid="search"></include>
 		</where>
