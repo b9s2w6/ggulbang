@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 public class HouseServiceImpl implements HouseService {	
 	final HouseMapper houseMapper;
 	
-
 	@Override
 	public House selectHouseDetail(long aptCode) {
 		return houseMapper.selectHouseDetail(aptCode);
@@ -65,6 +64,11 @@ public class HouseServiceImpl implements HouseService {
 		houseList.setTotalPageCount(totalPageCount);
 
 		return houseList;
+	}
+
+	@Override
+	public List<House> selectMyHouseAll(String userId) {
+		return houseMapper.selectMyHouseAll(userId);
 	}
 
 }

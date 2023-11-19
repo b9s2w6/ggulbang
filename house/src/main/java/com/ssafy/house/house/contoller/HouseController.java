@@ -39,7 +39,7 @@ public class HouseController {
 	@GetMapping
 	public ResponseEntity<?> selectHouseAll(@RequestParam Map<String, String> map) {
 		try {
-			System.out.println("전체목록 요청 수신");
+			System.out.println("[HouseController][selectHouseAll] : " + map);
 			HouseList houseList = houseService.selectHouseAll(map);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -49,8 +49,16 @@ public class HouseController {
 		}
 	}
 
-	@GetMapping("/{aptCode}")
+	@GetMapping("/user/{userId}")
+	public List<House> selectMyHouseAll(@PathVariable("userId") String userId) {
+		System.out.println("[HouseController][selectMyHouseAll] : " + userId);
+		System.out.println(houseService.selectMyHouseAll(userId));
+		return houseService.selectMyHouseAll(userId);
+	}
+	
+	@GetMapping("/detail/{aptCode}")
 	public House selectHouseDetail(@PathVariable("aptCode") long aptCode) {
+		System.out.println("[HouseController][selectHouseDetail] 로그");
 		System.out.println("전달받은 파라미터 aptCode: "+aptCode);
 		System.out.println(houseService.selectHouseDetail(aptCode));
 		return houseService.selectHouseDetail(aptCode);
@@ -64,9 +72,11 @@ public class HouseController {
 	// 집 소유주 변경 (product 테이블)
 	@PutMapping
 	public int updateHouse(@RequestBody Map<String, Object> params) {
-		System.out.println("updateHouse : " + params);
+		System.out.println("[HouseController][updateHouse] : " + params);
 		
 		int result = houseService.updateHouse(params);
+		
+		System.out.println("[HouseController][updateHouse] 결과 : " + result);
 		
 		// 제대로 소유주 변경시, 장바구니에서 삭제처리
 		if (result != 0) {
@@ -74,7 +84,10 @@ public class HouseController {
 			long aptCode = (long) params.get("aptCode");
 			
 			System.out.println("소유주 변경할거니까 장바구니에서 지움! : " + userId + ", " + aptCode );
-			return basketService.deleteBasket(userId, aptCode);
+			int tempResult = basketService.deleteBasket(userId, aptCode);
+			System.out.println("그 결과는요? : " + tempResult);
+			
+			return tempResult;
 		}
 		
 		return result;
