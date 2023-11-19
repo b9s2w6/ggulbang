@@ -24,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
 	public Map<String, String> login(Member member) {
 		Map<String, String> token = new HashMap<>();
 		Member memberInfo = memberMapper.login(member);
+		System.out.println(memberInfo);
 		if(Encryption.checkPW(member.getUserPass(), memberInfo.getUserPass())){
 			token.put("token", JWTUtil.generateToken(memberInfo));
 			return token;

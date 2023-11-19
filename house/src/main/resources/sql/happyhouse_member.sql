@@ -32,6 +32,7 @@ CREATE TABLE `member` (
   `address` varchar(100) DEFAULT NULL,
   `tel` varchar(100) DEFAULT NULL,
   `balance` bigInt DEFAULT 0,
+  `role` varchar(5) DEFAULT "user",
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,7 +43,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('aaa','1234','계란찜','2023-09-22 06:33:46',NULL,NULL,0),('qqqq','짱구','1234','2023-09-22 07:22:31','대덕대로150번길','010-9999-9999',0),('user1','최서현','1111','2023-09-15 08:03:05',NULL,NULL,0);
+INSERT INTO `member`(user_id, user_pass, user_name, address, tel) VALUES ('aaa','1234','계란찜',NULL,NULL),('qqqq','1234','짱구','대덕대로150번길','010-9999-9999'),('user1','1111','최서현',NULL,NULL);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,9 +55,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-10-26 11:38:38
-
--- 결재금액 보여주기
-ALTER TABLE `member`
-ADD COLUMN rechargeAmount bigint;

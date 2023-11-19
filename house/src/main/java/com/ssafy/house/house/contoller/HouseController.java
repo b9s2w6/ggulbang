@@ -36,9 +36,24 @@ public class HouseController {
 	final HouseService houseService;
 	final BasketService basketService;
 	
-	@GetMapping
+	@GetMapping("/admin")
+	public ResponseEntity<?> selectAdminHouseAll(@RequestParam Map<String, String> map) {
+		try {
+			System.out.println("관리자리스트요청");
+			System.out.println("[HouseController][selectHouseAll] : " + map);
+			HouseList houseList = houseService.selectHouseAll(map);
+			HttpHeaders header = new HttpHeaders();
+			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+			return ResponseEntity.ok().headers(header).body(houseList);
+		} catch (Exception e) {
+			return exceptionHandling(e);
+		}
+	}
+	
+	@GetMapping("/user")
 	public ResponseEntity<?> selectHouseAll(@RequestParam Map<String, String> map) {
 		try {
+			System.out.println("유저리스트요청");
 			System.out.println("[HouseController][selectHouseAll] : " + map);
 			HouseList houseList = houseService.selectHouseAll(map);
 			HttpHeaders header = new HttpHeaders();

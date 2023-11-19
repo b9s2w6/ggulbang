@@ -10,6 +10,7 @@ public class Member {
 	String joinDate;
 	String address;
 	String tel;
+	String role;
 	long balance;
 	long rechargeAmount;
 	long totalAssetPrice;

@@ -10,17 +10,19 @@
 		<result column="user_pass" property="userPass"/>
 		<result column="user_name" property="userName"/>
 		<result column="join_date" property="joinDate"/>
-		<result column="rechargeAmount" property="rechargeAmount"/>
 	</resultMap>
 	
 	<select id="login" parameterType="Member" resultMap="memberDto">
-		SELECT user_id, user_pass, user_name, rechargeAmount, 
-				(select sum(price) as totalAssetPrice
-					from product 
-					where userId = #{userId}) as totalAssetPrice
+		SELECT user_id, user_pass, user_name, role, balance
 			FROM member
 			WHERE user_id = #{userId}
 	</select>
+	
+	<!-- 
+	(select sum(price) as totalAssetPrice
+					from product 
+					where userId = #{userId}) as totalAssetPrice
+	 -->
 	
 	<insert id="registMember" parameterType="Member">
 		insert into member(user_id, user_pass, user_name, address, tel)
