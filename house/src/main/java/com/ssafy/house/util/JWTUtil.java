@@ -27,6 +27,7 @@ public class JWTUtil {
 		Claims claims = Jwts.claims();
 		claims.put("userId", member.getUserId());
 		claims.put("userName", member.getUserName());
+		claims.put("role", member.getRole());
 		claims.put("rechargeAmount", member.getRechargeAmount());
 		claims.put("totalAssetPrice", member.getTotalAssetPrice());
 
