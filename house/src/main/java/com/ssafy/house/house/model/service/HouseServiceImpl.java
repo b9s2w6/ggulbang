@@ -51,18 +51,26 @@ public class HouseServiceImpl implements HouseService {
 		param.put("key", key == null ? "" : key);
 		if ("user_id".equals(key))
 			param.put("key", key == null ? "" : "b.user_id");
-		List<House> list = houseMapper.selectHouseAll(param);
+		List<House> list;
+		int totalArticleCount;
+		if(map.get("role").equals("admin")) {
+			list = houseMapper.selectHouseAdmin(param);
+			totalArticleCount = houseMapper.getTotalHouseCount(param);
+		} else {
+			list = houseMapper.selectHouseUser(param);
+			totalArticleCount = houseMapper.getUserHouseCount(param);
+		}
 
 		if ("user_id".equals(key))
 			param.put("key", key == null ? "" : "user_id");
-		int totalArticleCount = houseMapper.getTotalHouseCount(param);
+		
+		System.out.println("totalArticleCount"+totalArticleCount);
 		int totalPageCount = (totalArticleCount - 1) / sizePerPage + 1;
 
 		HouseList houseList = new HouseList();
 		houseList.setHouses(list);
 		houseList.setCurrentPage(currentPage);
 		houseList.setTotalPageCount(totalPageCount);
-
 		return houseList;
 	}
 
@@ -70,5 +78,6 @@ public class HouseServiceImpl implements HouseService {
 	public List<House> selectMyHouseAll(String userId) {
 		return houseMapper.selectMyHouseAll(userId);
 	}
+
 
 }

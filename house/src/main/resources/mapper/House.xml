@@ -4,13 +4,48 @@
 
 <mapper
 	namespace="com.ssafy.house.house.model.mapper.HouseMapper">
+	<resultMap type="House" id="house">
+		<result column="userId" property="ownerId"/>
+	</resultMap>
+	
+	<select id="selectHouseAdmin" resultMap="house">
+		select h.aptCode, h.buildYear, h.roadName, h.roadNameBonbun, h.roadNameBubun,
+		h.roadNameSeq, h.roadNameBasementCode, h.roadNameCode, h.dong, h.bonbun,
+		h.bubun, h.sigunguCode, h.eubmyundongCode, h.dongCode, h.landCode,
+		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price
+			from houseinfo h
+			left outer join product p
+		on h.aptCode = p.aptCode
+			<where>
+				<include refid="search"></include>		
+			</where>
+			order by aptCode desc
+			limit #{start}, #{listsize}
+	</select>
+	
+	<select id="selectHouseUser" resultMap="house">
+		select h.aptCode, h.buildYear, h.roadName, h.roadNameBonbun, h.roadNameBubun,
+		h.roadNameSeq, h.roadNameBasementCode, h.roadNameCode, h.dong, h.bonbun,
+		h.bubun, h.sigunguCode, h.eubmyundongCode, h.dongCode, h.landCode,
+		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price
+		from houseinfo h
+		join product p
+		on h.aptCode = p.aptCode
+		<include refid="search"></include>
+		order by h.aptCode desc
+		limit #{start}, #{listsize}
+	</select>
+	
+	
 	<select id="selectHouseAll" resultType="house">
 		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
 				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
 				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
 				apartmentName, jibun, lng, lat
 			from houseinfo
-			<include refid="search"></include>
+			<where>
+				<include refid="search"></include>		
+			</where>
 			order by aptCode desc
 			limit #{start}, #{listsize}
 	</select>
@@ -76,6 +111,17 @@
 		resultType="int">
 		select count(aptCode)
 			from houseinfo
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+	
+	<select id="getUserHouseCount" parameterType="map"
+		resultType="int">
+		select count(*)
+		from houseinfo h
+		join product p
+		on h.aptCode = p.aptCode
 		<where>
 			<include refid="search"></include>
 		</where>
