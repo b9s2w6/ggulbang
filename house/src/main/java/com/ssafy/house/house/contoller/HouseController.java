@@ -41,6 +41,7 @@ public class HouseController {
 		try {
 			System.out.println("관리자리스트요청");
 			System.out.println("[HouseController][selectHouseAll] : " + map);
+			map.put("role", "admin");
 			HouseList houseList = houseService.selectHouseAll(map);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
@@ -55,6 +56,7 @@ public class HouseController {
 		try {
 			System.out.println("유저리스트요청");
 			System.out.println("[HouseController][selectHouseAll] : " + map);
+			map.put("role", "user");
 			HouseList houseList = houseService.selectHouseAll(map);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
