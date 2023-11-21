@@ -23,8 +23,17 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int registHouse(House House) {
-		return houseMapper.registHouse(House);
+	public int registHouse(Map<String, String> map) {
+		System.out.println("서비스 내부 map"+ map);
+		String dongCode = houseMapper.getDongCode(map);
+		System.out.println(dongCode);
+		House house = new House();
+		house.setApartmentName(map.get("apartmentName"));
+		house.setPrice(Long.parseLong(map.get("price")));
+		house.setOwnerId(map.get("userId"));
+		house.setDongCode(dongCode);
+		System.out.println(house);
+		return houseMapper.registHouse(house);
 	}
 
 	@Override
@@ -77,6 +86,22 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<House> selectMyHouseAll(String userId) {
 		return houseMapper.selectMyHouseAll(userId);
+	}
+
+	@Override
+	public List<String> getSidoList() {
+		return houseMapper.getSidoList();
+	}
+
+	@Override
+	public List<String> getGugunList(String sidoName) {
+		return houseMapper.getGugunList(sidoName);
+	}
+
+	@Override
+	public List<String> getDongList(Map<String, String> map) {
+		
+		return houseMapper.getDongList(map);
 	}
 
 

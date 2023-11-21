@@ -1,6 +1,7 @@
 package com.ssafy.house.house.contoller;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,8 +83,10 @@ public class HouseController {
 	}
 
 	@PostMapping
-	public int registHouse(House house) {
-		return houseService.registHouse(house);
+	public int registHouse(@RequestBody Map<String, String> map) {
+		System.out.println("등록요청수신");
+		System.out.println(map);
+		return houseService.registHouse(map);
 	}
 
 	// 집 소유주 변경 (product 테이블)
@@ -118,6 +121,26 @@ public class HouseController {
 	private ResponseEntity<String> exceptionHandling(Exception e) {
 		e.printStackTrace();
 		return new ResponseEntity<String>("Error : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/sidoList")
+	private List<String> getSidoList() {
+		System.out.println("시도리스트 요청 수신");
+		return houseService.getSidoList();
+	}
+	
+	@GetMapping("/gugunList/{sidoName}")
+	private List<String> getGugunList(@PathVariable("sidoName") String sidoName) {
+		System.out.println("구군리스트 요청 수신"+ sidoName);
+		return houseService.getGugunList(sidoName);
+	}
+	
+	@GetMapping("/dongList")
+	private List<String> getDongList(@RequestParam String sidoName, @RequestParam String gugunName) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sidoName", sidoName);
+		map.put("gugunName", gugunName);
+		return houseService.getDongList(map);
 	}
 	 
 }

@@ -18,4 +18,8 @@ public interface HouseMapper {
 	int deleteHouse(long aptCode);
 	int getTotalHouseCount(Map<String, Object> param);
 	int getUserHouseCount(Map<String, Object> param);
+	List<String> getSidoList();
+	List<String> getGugunList(String sidoName);
+	List<String> getDongList(Map<String, String> map);
+	String getDongCode(Map<String, String> map);
 }
