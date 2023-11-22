@@ -59,6 +59,7 @@ public class HouseController {
 			System.out.println("[HouseController][selectHouseAll] : " + map);
 			map.put("role", "user");
 			HouseList houseList = houseService.selectHouseAll(map);
+			System.out.println(houseList);
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
 			return ResponseEntity.ok().headers(header).body(houseList);
