@@ -15,7 +15,7 @@
 		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price
 			from houseinfo h
 			left outer join product p
-		on h.aptCode = p.aptCode
+			on h.aptCode = p.aptCode
 			<where>
 				<include refid="search"></include>		
 			</where>
@@ -33,7 +33,9 @@
 		on h.aptCode = p.aptCode
 		left outer join dongcode d
 				on h.dongCode = d.dongCode
-		<include refid="search"></include>
+		<where>
+			<include refid="search"></include>
+		</where>
 		order by h.aptCode desc
 		limit #{start}, #{listsize}
 	</select>
