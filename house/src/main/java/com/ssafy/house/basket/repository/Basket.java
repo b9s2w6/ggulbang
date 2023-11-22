@@ -13,4 +13,5 @@ public class Basket {
 	private String gugunName;
 	private String dongName;
 	private String roadName;
+	private String apartmentName;
 }
