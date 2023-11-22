@@ -9,4 +9,8 @@ public class Basket {
 	private String userId;
 	private long aptCode;
 	private long price;
+	private String sidoName;
+	private String gugunName;
+	private String dongName;
+	private String roadName;
 }

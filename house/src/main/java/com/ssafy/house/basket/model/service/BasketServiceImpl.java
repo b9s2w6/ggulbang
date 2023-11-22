@@ -16,7 +16,9 @@ public class BasketServiceImpl implements BasketService {
 	
 	@Override
 	public List<Basket> selectBasketAll(String userId) {
-		return basketMapper.selectBasketAll(userId);
+		List<Basket> list = basketMapper.selectBasketAll(userId);
+		System.out.println("조회결과"+list);
+		return list;
 	}
 
 	@Override
