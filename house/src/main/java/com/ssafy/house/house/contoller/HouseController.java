@@ -83,7 +83,7 @@ public class HouseController {
 	}
 
 	@PostMapping
-	public int registHouse(@RequestBody Map<String, String> map) {
+	public int registHouse(@RequestBody Map<String, Object> map) {
 		System.out.println("등록요청수신");
 		System.out.println(map);
 		return houseService.registHouse(map);

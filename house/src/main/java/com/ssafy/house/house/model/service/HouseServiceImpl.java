@@ -23,17 +23,19 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int registHouse(Map<String, String> map) {
+	public int registHouse(Map<String, Object> map) {
 		System.out.println("서비스 내부 map"+ map);
 		String dongCode = houseMapper.getDongCode(map);
 		System.out.println(dongCode);
 		House house = new House();
-		house.setApartmentName(map.get("apartmentName"));
-		house.setPrice(Long.parseLong(map.get("price")));
-		house.setOwnerId(map.get("userId"));
+		house.setApartmentName((String) map.get("apartmentName"));
+		house.setPrice(Long.parseLong((String) map.get("price")));
+		house.setOwnerId((String) map.get("userId"));
 		house.setDongCode(dongCode);
-		System.out.println(house);
-		return houseMapper.registHouse(house);
+		houseMapper.registHouse(house);
+		map.put("aptCode", house.getAptCode());
+		System.out.println(map);
+		return houseMapper.registProduct(map);
 	}
 
 	@Override

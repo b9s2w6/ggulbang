@@ -25,4 +25,6 @@ public class House {
 	String lat;
 	String ownerId;
 	long price;
+	String sidoName;
+	String gugunName;
 }

@@ -27,10 +27,12 @@
 		select h.aptCode, h.buildYear, h.roadName, h.roadNameBonbun, h.roadNameBubun,
 		h.roadNameSeq, h.roadNameBasementCode, h.roadNameCode, h.dong, h.bonbun,
 		h.bubun, h.sigunguCode, h.eubmyundongCode, h.dongCode, h.landCode,
-		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price
+		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price, d.sidoName, d.gugunName
 		from houseinfo h
 		join product p
 		on h.aptCode = p.aptCode
+		left outer join dongcode d
+				on h.dongCode = d.dongCode
 		<include refid="search"></include>
 		order by h.aptCode desc
 		limit #{start}, #{listsize}
@@ -38,11 +40,15 @@
 	
 	
 	<select id="selectHouseAll" resultType="house">
-		select aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
-				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
-				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
-				apartmentName, jibun, lng, lat
-			from houseinfo
+		select h.aptCode, h.buildYear, h.roadName, h.roadNameBonbun, h.roadNameBubun,
+		h.roadNameSeq, h.roadNameBasementCode, h.roadNameCode, h.dong, h.bonbun,
+		h.bubun, h.sigunguCode, h.eubmyundongCode, h.dongCode, h.landCode,
+		h.apartmentName, h.jibun, h.lng, h.lat, p.userId, p.price, d.sidoName, d.gugunName
+			from houseinfo h
+			left outer join product p
+				on h.aptCode = p.aptCode
+			left outer join dongcode d
+				on h.dongCode = d.dongCode
 			<where>
 				<include refid="search"></include>		
 			</where>
@@ -74,8 +80,11 @@
 	</select>
 
 	<insert id="registHouse" parameterType="house">
-		insert into houseinfo(price, apartmentName, ownerId, dongCode)
-		values(#{price}, #{apartmentName}, #{ownerId}, #dongCode);
+		insert into houseinfo(apartmentName, dongCode)
+		values(#{apartmentName}, #{dongCode});
+		<selectKey keyProperty="aptCode" keyColumn="aptCode" resultType="long" order="AFTER" >
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 
  	<update id="updateHouse" parameterType="map">
@@ -149,5 +158,9 @@
 		where sidoName = #{selectedSido} and gugunName = #{selectedGugun} and dongName = #{selectedDong};
 	</select>
 	
+	<insert id="registProduct" parameterType="map">
+		insert into product(userId, aptCode, price)
+		values(#{userId},#{aptCode},#{price});
+	</insert>
 	
 </mapper>
