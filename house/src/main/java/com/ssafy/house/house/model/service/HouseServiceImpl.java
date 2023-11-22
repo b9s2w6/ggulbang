@@ -31,6 +31,7 @@ public class HouseServiceImpl implements HouseService {
 		house.setApartmentName((String) map.get("apartmentName"));
 		house.setPrice(Long.parseLong((String) map.get("price")));
 		house.setOwnerId((String) map.get("userId"));
+		house.setRoadName((String) map.get("roadName"));
 		house.setDongCode(dongCode);
 		houseMapper.registHouse(house);
 		map.put("aptCode", house.getAptCode());

@@ -80,8 +80,8 @@
 	</select>
 
 	<insert id="registHouse" parameterType="house">
-		insert into houseinfo(apartmentName, dongCode)
-		values(#{apartmentName}, #{dongCode});
+		insert into houseinfo(apartmentName, dongCode, roadName)
+		values(#{apartmentName}, #{dongCode}, #{roadName});
 		<selectKey keyProperty="aptCode" keyColumn="aptCode" resultType="long" order="AFTER" >
 			SELECT LAST_INSERT_ID()
 		</selectKey>
