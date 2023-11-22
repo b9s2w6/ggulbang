@@ -10,7 +10,7 @@
 	</resultMap>  -->
 
  	<select id="selectBasketAll" parameterType="string" resultType="basket">
-		SELECT basketNo, product.userId, basket.aptCode, product.price, d.sidoName, d.gugunName, d.dongName, h.roadName
+		SELECT basketNo, product.userId, basket.aptCode, product.price, d.sidoName, d.gugunName, d.dongName, h.roadName, h.apartmentName
 			FROM happyhouse.basket as basket
 		    left outer join product as product
 				on basket.aptCode = product.aptCode
