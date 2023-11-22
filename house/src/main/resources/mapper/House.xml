@@ -59,13 +59,11 @@
 	<select id="selectMyHouseAll" parameterType="string" resultType="house">
 		select house.aptCode, buildYear, roadName, roadNameBonbun, roadNameBubun,
 				roadNameSeq, roadNameBasementCode, roadNameCode, dong, bonbun,
-				bubun, sigunguCode, eubmyundongCode, house.dongCode, landCode,
-				apartmentName, jibun, lng, lat, p.userId as ownerId, p.price, d.sidoName, d.gugunName
-			from houseinfo as house
-			left outer join product as p
-				on p.aptCode = house.aptCode
-			left outer join dongcode d
-				on house.dongCode = d.dongCode
+				bubun, sigunguCode, eubmyundongCode, dongCode, landCode,
+				apartmentName, jibun, lng, lat
+			from product as product
+			left outer join houseinfo as house
+				on product.aptCode = house.aptCode
 			where userId = #{userId};
 	</select>
 
