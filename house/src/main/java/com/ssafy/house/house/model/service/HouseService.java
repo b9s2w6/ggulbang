@@ -13,7 +13,7 @@ public interface HouseService {
 	HouseList selectHouseAll(Map<String, String> map);
 	List<House> selectMyHouseAll(String userId);
 	House selectHouseDetail(long aptCode);
-	int registHouse(Map<String, String> map);
+	int registHouse(Map<String, Object> map);
 	int updateHouse(Map<String, Object> params);
 	int deleteHouse(long aptCode);
 	List<String> getSidoList();

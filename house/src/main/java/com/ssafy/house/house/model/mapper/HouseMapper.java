@@ -13,7 +13,7 @@ public interface HouseMapper {
 	List<House> selectHouseUser(Map<String, Object> param);
 	List<House> selectMyHouseAll(String userId);
 	House selectHouseDetail(long aptCode);
-	int registHouse(House House);
+	long registHouse(House House);
 	int updateHouse(Map<String, Object> params);
 	int deleteHouse(long aptCode);
 	int getTotalHouseCount(Map<String, Object> param);
@@ -21,5 +21,6 @@ public interface HouseMapper {
 	List<String> getSidoList();
 	List<String> getGugunList(String sidoName);
 	List<String> getDongList(Map<String, String> map);
-	String getDongCode(Map<String, String> map);
+	String getDongCode(Map<String, Object> map);
+	int registProduct(Map<String, Object> map);
 }
