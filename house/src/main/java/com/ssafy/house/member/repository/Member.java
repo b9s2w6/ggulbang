@@ -16,4 +16,5 @@ public class Member {
 	long totalAssetPrice;
 	int question;
 	String answer;
+	String userNewPass;
 }

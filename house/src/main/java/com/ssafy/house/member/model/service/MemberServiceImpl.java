@@ -45,9 +45,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.checkUser(member);
 	}
 	
-	@Override
-	public int resetPassword(Member member) {
-		return memberMapper.resetPassword(member);
+	public int updatePassword(Member member) {
+		return memberMapper.updatePassword(member);
 	}
 
 	@Override
