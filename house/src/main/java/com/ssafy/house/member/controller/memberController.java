@@ -1,9 +1,11 @@
 package com.ssafy.house.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.house.member.model.service.MemberService;
 import com.ssafy.house.member.repository.Member;
+import com.ssafy.house.member.repository.RechargeInfo;
 import com.ssafy.house.util.Encryption;
 
 import lombok.RequiredArgsConstructor;
@@ -58,5 +61,23 @@ public class memberController {
 		System.out.println("비밀번호 리셋 완료) id + " + member.getUserId() + ", " + result);
 		
 		return result;
+	}
+	
+	@PostMapping("/recharge")
+	private void recharge(@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		memberService.registRecharge(map);
+	}
+	
+	@GetMapping("/getRechargeList")
+	private List<RechargeInfo> getRechargeList(){
+		return memberService.getRechargeList();
+	}
+	
+	@PostMapping("/acceptRecharge")
+	private void acceptRecharge(@RequestBody List<Map<String, Object>> rechargeList) {
+		System.out.println("충전 수량 접근");
+		System.out.println(rechargeList);
+		memberService.acceptRecharge(rechargeList);
 	}
 }
