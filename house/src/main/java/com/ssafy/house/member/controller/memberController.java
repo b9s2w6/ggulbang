@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.house.member.model.service.MemberService;
@@ -93,5 +94,12 @@ public class memberController {
 		System.out.println("충전 수량 접근");
 		System.out.println(rechargeList);
 		memberService.acceptRecharge(rechargeList);
+	}
+	
+	
+	@GetMapping("/refresh")
+	private Member refresh(@RequestParam String userId) {
+		System.out.println("새로고침"+userId);
+		return memberService.refresh(userId);
 	}
 }
