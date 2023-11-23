@@ -35,13 +35,14 @@
 		select count(*)
 			from member 
 		    where role = "user"
+		    	and user_id = #{userId}
 				and user_name = #{userName}
 				and tel = #{tel}
 		        and questionNo = 3
 		        and answer = "고기";
 	</select>
 	
-	<update id="resetPassword" parameterType="Member">
+	<update id="updatePassword" parameterType="Member">
 	    UPDATE member
 		    SET user_pass = #{userPass}
 		    WHERE role = "user"

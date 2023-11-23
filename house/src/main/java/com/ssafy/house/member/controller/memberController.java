@@ -32,7 +32,7 @@ public class memberController {
 		Map<String, String> loginInfo= memberService.login(member);
 		
 		if(loginInfo==null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); 
-		System.out.println(loginInfo);
+		System.out.println("로그인 정보요 : " + loginInfo);
 		return ResponseEntity.ok(loginInfo);
 	}
 
@@ -57,7 +57,7 @@ public class memberController {
 		
 		// 맞으면 초기화 후 비번 리셋 진행
 		member.setUserPass(Encryption.hashPW(member.getUserId() + "2023!"));
-		int result = memberService.resetPassword(member);
+		int result = memberService.updatePassword(member);
 		System.out.println("비밀번호 리셋 완료) id + " + member.getUserId() + ", " + result);
 		
 		return result;
@@ -72,6 +72,20 @@ public class memberController {
 	@GetMapping("/getRechargeList")
 	private List<RechargeInfo> getRechargeList(){
 		return memberService.getRechargeList();
+	}
+	
+	@PostMapping("/updatePassword")
+	public int updatePassword(@RequestBody Member member) {
+		System.out.println("[memberController][resetPassword] : " + member);
+		
+		// 로그인이 되는 정보가 아니면 업데이트 취소
+		Map<String, String> loginInfo = memberService.login(member);
+		if(loginInfo == null) return - 1; 
+		
+		member.setUserPass(Encryption.hashPW(member.getUserNewPass()));
+		int result = memberService.updatePassword(member);
+		
+		return result;
 	}
 	
 	@PostMapping("/acceptRecharge")

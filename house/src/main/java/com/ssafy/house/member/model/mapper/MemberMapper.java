@@ -12,11 +12,12 @@ import com.ssafy.house.member.repository.RechargeInfo;
 public interface MemberMapper {
 	public Member login(Member member);
 	public void registMember(Member member);
-	public int checkUser(Member member);
-	public int resetPassword(Member member);
 	public void registRecharge(Map<String, Object> map);
 	public List<RechargeInfo> getRechargeList();
 	public void updateMemberAmount();
 	public void updateMemberAmount(Map<String, Object> recharge);
 	public void updateRechargeInfo(Map<String, Object> recharge);
+	public int checkUser(Member member);
+	public int resetPassword(Member member);
+	public int updatePassword(Member member);
 }
