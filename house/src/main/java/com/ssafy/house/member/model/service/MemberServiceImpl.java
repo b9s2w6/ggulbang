@@ -1,6 +1,7 @@
 package com.ssafy.house.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.house.house.model.mapper.HouseMapper;
 import com.ssafy.house.member.model.mapper.MemberMapper;
 import com.ssafy.house.member.repository.Member;
+import com.ssafy.house.member.repository.RechargeInfo;
 import com.ssafy.house.util.Encryption;
 import com.ssafy.house.util.JWTUtil;
 
@@ -46,6 +48,24 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int resetPassword(Member member) {
 		return memberMapper.resetPassword(member);
+	}
+
+	@Override
+	public void registRecharge(Map<String, Object> map) {
+		memberMapper.registRecharge(map);
+	}
+
+	@Override
+	public List<RechargeInfo> getRechargeList() {
+		return memberMapper.getRechargeList();
+	}
+
+	@Override
+	public void acceptRecharge(List<Map<String, Object>> rechargeList) {
+		for(Map<String, Object> recharge: rechargeList) {
+			memberMapper.updateMemberAmount(recharge);
+			memberMapper.updateRechargeInfo(recharge);
+		}
 	}
 
 }

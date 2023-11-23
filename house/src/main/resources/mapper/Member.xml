@@ -12,6 +12,11 @@
 		<result column="join_date" property="joinDate"/>
 	</resultMap>
 	
+	<resultMap type="RechargeInfo" id="rechargeInfo">
+		<result column="user_id" property="userId"/>
+		<result column="recharge_id" property="rechargeId"/>
+	</resultMap>
+	
 	<select id="login" parameterType="Member" resultMap="memberDto">
 		SELECT user_id, user_pass, user_name, role, rechargeAmount, (select sum(price) as totalAssetPrice
 																		from product 
@@ -41,5 +46,35 @@
 		    SET user_pass = #{userPass}
 		    WHERE role = "user"
 		    	and user_id = #{userId}
+	</update>
+	
+	<insert id="registRecharge" parameterType="map">
+		insert into recharge_list(user_id, amount)
+		values(#{userId},#{amount})
+	</insert>
+	
+	<select id="getRechargeList" resultMap="rechargeInfo">
+		select recharge_id, user_id, amount, step
+		from recharge_list
+		where step = "진행중"; 
+	</select>
+	
+	<update id="updateMemberAmount" parameterType="map">
+		UPDATE member
+		SET rechargeAmount = (
+		    SELECT rechargeAmount + #{rechargeAmount}
+		    FROM (
+		        SELECT rechargeAmount
+		        FROM member
+		        WHERE user_id = #{userId}
+		    ) AS temp
+		)
+		WHERE user_id = #{userId};
+	</update>
+	
+	<update id="updateRechargeInfo" parameterType="map">
+		UPDATE recharge_list
+		set step = "완료"
+		where recharge_id = #{rechargeId}
 	</update>
 </mapper>
