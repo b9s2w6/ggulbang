@@ -75,14 +75,21 @@
 	
 	<update id="updateRechargeInfo" parameterType="map">
 		UPDATE recharge_list
-		set step = "완료"
-		where recharge_id = #{rechargeId}
+			set step = "완료"
+			where recharge_id = #{rechargeId}
 	</update>
 	
 	<select id="refresh" parameterType="String"	resultType="member">
 		select rechargeAmount, (select sum(price) as totalAssetPrice
 								from product 
 								where userId = #{userId}) as totalAssetPrice
+			FROM member
+			WHERE user_id = #{userId}
+	</select>
+	<select id="getUserInfo" parameterType="Member" resultMap="memberDto">
+		SELECT user_id, user_pass, user_name, role, rechargeAmount, (select sum(price) as totalAssetPrice
+																		from product 
+																		where userId = #{userId}) as totalAssetPrice
 			FROM member
 			WHERE user_id = #{userId}
 	</select>

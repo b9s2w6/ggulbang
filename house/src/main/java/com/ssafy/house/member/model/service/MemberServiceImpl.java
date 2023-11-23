@@ -71,4 +71,9 @@ public class MemberServiceImpl implements MemberService {
 	public Member refresh(String userId) {
 		return memberMapper.refresh(userId);
 	}
+	
+	@Override
+	public Member getUserInfo(Member member) {
+		return memberMapper.getUserInfo(member);
+	}
 }
