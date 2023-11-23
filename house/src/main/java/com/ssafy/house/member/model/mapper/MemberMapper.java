@@ -20,4 +20,5 @@ public interface MemberMapper {
 	public int checkUser(Member member);
 	public int updatePassword(Member member);
 	public Member refresh(String userId);
+	Member getUserInfo(Member member);
 }

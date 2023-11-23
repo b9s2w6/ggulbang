@@ -15,4 +15,5 @@ public interface MemberService {
 	int checkUser(Member member);
 	int updatePassword(Member member);
 	Member refresh(String userId);
+	Member getUserInfo(Member member);
 }

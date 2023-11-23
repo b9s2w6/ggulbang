@@ -102,4 +102,13 @@ public class memberController {
 		System.out.println("새로고침"+userId);
 		return memberService.refresh(userId);
 	}
+
+	@GetMapping("/getUserInfo")
+	public Member getUserInfo(@RequestBody Member member){
+		System.out.println("[memberController][getUserInfo] " + member);
+		
+		Member userInfo = memberService.getUserInfo(member);
+		System.out.println("새로 가져온 유저 정보 : " + userInfo);
+		return userInfo;
+	}
 }
