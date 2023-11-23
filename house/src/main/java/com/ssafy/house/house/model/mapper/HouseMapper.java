@@ -24,4 +24,5 @@ public interface HouseMapper {
 	String getDongCode(Map<String, Object> map);
 	int registProduct(Map<String, Object> map);
 	void calcMoney(Map<String, Object> params);
+	void calcOwnerMoney(Map<String, Object> params);
 }
