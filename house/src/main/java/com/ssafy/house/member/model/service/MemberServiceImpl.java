@@ -37,5 +37,15 @@ public class MemberServiceImpl implements MemberService {
 		member.setUserPass(Encryption.hashPW(member.getUserPass()));
 		memberMapper.registMember(member);
 	}
+
+	@Override
+	public int checkUser(Member member) {
+		return memberMapper.checkUser(member);
+	}
 	
+	@Override
+	public int resetPassword(Member member) {
+		return memberMapper.resetPassword(member);
+	}
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.house.member.model.service.MemberService;
 import com.ssafy.house.member.repository.Member;
+import com.ssafy.house.util.Encryption;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,5 +38,25 @@ public class memberController {
 		System.out.println("회원가입" + member);
 		//		Member memberInfo = 
 		memberService.registMember(member);
+	}
+	
+	@PostMapping("/resetPassword")
+	public int resetPassword(@RequestBody Member member) {
+		System.out.println("[memberController][resetPassword] : " + member);
+		
+		int isExist = memberService.checkUser(member);
+		
+		// 유저 정보 확인했는데 아니면 -1 리턴
+		if (isExist!= 1) {
+			System.out.println("문제 생겼심다 : " + isExist);
+			return -1; 
+		}
+		
+		// 맞으면 초기화 후 비번 리셋 진행
+		member.setUserPass(Encryption.hashPW(member.getUserId() + "2023!"));
+		int result = memberService.resetPassword(member);
+		System.out.println("비밀번호 리셋 완료) id + " + member.getUserId() + ", " + result);
+		
+		return result;
 	}
 }
