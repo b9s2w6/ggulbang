@@ -50,14 +50,14 @@
 	</update>
 	
 	<insert id="registRecharge" parameterType="map">
-		insert into recharge_list(user_id, amount)
-		values(#{userId},#{amount})
+		insert into recharge_list(user_id, amount, step)
+		values(#{userId},#{amount}, "진행중")
 	</insert>
 	
 	<select id="getRechargeList" resultMap="rechargeInfo">
 		select recharge_id, user_id, amount, step
-		from recharge_list
-		where step = "진행중"; 
+			from recharge_list
+			where step = "진행중"; 
 	</select>
 	
 	<update id="updateMemberAmount" parameterType="map">
