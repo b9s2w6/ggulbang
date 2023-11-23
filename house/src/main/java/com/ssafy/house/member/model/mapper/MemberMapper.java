@@ -19,4 +19,5 @@ public interface MemberMapper {
 	public void updateRechargeInfo(Map<String, Object> recharge);
 	public int checkUser(Member member);
 	public int updatePassword(Member member);
+	public Member refresh(String userId);
 }

@@ -167,4 +167,21 @@
 		values(#{userId},#{aptCode},#{price});
 	</insert>
 	
+	<update id="calcMoney" parameterType="map">
+		UPDATE member
+		SET rechargeAmount = (
+		    SELECT subquery.rechargeAmount
+		    FROM (
+		        SELECT rechargeAmount
+		        FROM member
+		        WHERE user_id = #{userId}
+		    ) AS subquery
+		) - (
+		    SELECT price
+		    FROM product
+		    WHERE aptCode = #{aptCode}
+		)
+		WHERE user_id = #{userId};
+	</update>
+	
 </mapper>

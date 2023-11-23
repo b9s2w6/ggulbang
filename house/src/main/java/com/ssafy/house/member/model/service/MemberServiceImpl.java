@@ -66,4 +66,9 @@ public class MemberServiceImpl implements MemberService {
 			memberMapper.updateRechargeInfo(recharge);
 		}
 	}
+
+	@Override
+	public Member refresh(String userId) {
+		return memberMapper.refresh(userId);
+	}
 }
