@@ -14,4 +14,6 @@ public class Member {
 	long balance;
 	long rechargeAmount;
 	long totalAssetPrice;
+	int question;
+	String answer;
 }
