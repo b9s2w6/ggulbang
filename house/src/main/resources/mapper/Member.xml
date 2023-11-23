@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<select id="login" parameterType="Member" resultMap="memberDto">
-		SELECT user_id, user_pass, user_name, role, balance, (select sum(price) as totalAssetPrice
+		SELECT user_id, user_pass, user_name, role, rechargeAmount, (select sum(price) as totalAssetPrice
 					from product 
 					where userId = #{userId}) as totalAssetPrice
 			FROM member
