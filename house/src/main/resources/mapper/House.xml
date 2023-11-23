@@ -184,4 +184,20 @@
 		WHERE user_id = #{userId};
 	</update>
 	
+	<update id="calcOwnerMoney">
+		UPDATE member
+		SET rechargeAmount = (
+		    SELECT subquery.rechargeAmount
+		    FROM (
+		        SELECT rechargeAmount
+		        FROM member
+		        WHERE user_id = #{ownerId}
+		    ) AS subquery
+		) + (
+		    SELECT price
+		    FROM product
+		    WHERE aptCode = #{aptCode}
+		)
+		WHERE user_id = #{ownerId};
+	</update>
 </mapper>
