@@ -13,6 +13,5 @@ public interface MemberService {
 	List<RechargeInfo> getRechargeList();
 	void acceptRecharge(List<Map<String, Object>> rechargeList);
 	int checkUser(Member member);
-	int resetPassword(Member member);
 	int updatePassword(Member member);
 }

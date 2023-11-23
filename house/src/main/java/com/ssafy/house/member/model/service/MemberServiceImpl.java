@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 	public int checkUser(Member member) {
 		return memberMapper.checkUser(member);
 	}
-	
+	@Override
 	public int updatePassword(Member member) {
 		return memberMapper.updatePassword(member);
 	}
@@ -66,5 +66,4 @@ public class MemberServiceImpl implements MemberService {
 			memberMapper.updateRechargeInfo(recharge);
 		}
 	}
-
 }

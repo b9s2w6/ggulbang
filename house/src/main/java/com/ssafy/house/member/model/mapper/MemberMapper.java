@@ -18,6 +18,5 @@ public interface MemberMapper {
 	public void updateMemberAmount(Map<String, Object> recharge);
 	public void updateRechargeInfo(Map<String, Object> recharge);
 	public int checkUser(Member member);
-	public int resetPassword(Member member);
 	public int updatePassword(Member member);
 }
